@@ -1,10 +1,18 @@
 class ItemsController < ApplicationController
-  before_action :get_item, only: [:destroy, :update, :change_quantity]
+  before_action :get_item, except: []
   before_action :authorize!, except: [:index]
 
   def index
     @items = Item.all
     render json: @items
+  end
+
+  def show
+    if authorize!
+      render json: {item: @item, orders: @item.orders}
+    else
+      render json: @item
+    end
   end
 
   def create

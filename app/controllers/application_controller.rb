@@ -10,7 +10,9 @@ class ApplicationController < ActionController::Base
   end
 
   def authorize!
-    unless current_user
+    if current_user
+      true
+    else
       render json: {message: "Please log in"}
     end
   end
