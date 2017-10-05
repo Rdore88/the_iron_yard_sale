@@ -29,7 +29,7 @@ export default class App extends Component{
         <hr className="my-4"></hr>
         <p>Remember the desk you sat at while learning to code? It can be yours!</p>
         <p className="lead">
-          <a className="btn btn-primary btn-lg" href="#" role="button">See All Items</a>
+          <Link className="btn btn-primary btn-lg" to="#" role="button">See All Items</Link>
         </p>
       </div>
     </div>
