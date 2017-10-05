@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name_of_buyer: MyString
+  email_of_buyer: MyString
+  phone_of_buyer: MyString
+  quantity: 1
+  confirmed: false
+  date: MyString
+  item: one
+
+two:
+  name_of_buyer: MyString
+  email_of_buyer: MyString
+  phone_of_buyer: MyString
+  quantity: 1
+  confirmed: false
+  date: MyString
+  item: two

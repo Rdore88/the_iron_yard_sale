@@ -24,8 +24,12 @@ class ItemsController < ApplicationController
     end
   end
 
-  def change_quantity
+  def subtract_quantity
     @item.update(quantity: @item.quantity - item_params.quantity)
+  end
+
+  def add_quantity
+    @item.update(quantity: @item.quantity + item_params.quantity)
   end
 
   def update
