@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
-  before_action :get_boot, only: [:destroy, :update]
+  before_action :get_item, only: [:destroy, :update, :change_quantity]
+  before_action :authorize!, except: [:index]
 
   def index
     @items = Item.all
@@ -21,6 +22,10 @@ class ItemsController < ApplicationController
     else
       render json: {message: "Couldn't remove item"}
     end
+  end
+
+  def change_quantity
+    @item.update(quantity: @item.quantity - item_params.quantity)
   end
 
   def update
