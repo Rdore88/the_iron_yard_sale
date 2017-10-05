@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
-  before_action :get_item, except: []
-  before_action :authorize!, except: [:index]
+  before_action :get_item, except: [:index, :create]
+  before_action :authorize!, except: [:index, :show]
 
   def index
     @items = Item.all

@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   before_action :get_order, except: [:index, :create]
-  before_action :authroize!, only: [:confirm_order]
+  before_action :authroize!, except: [:create]
 
   def index
     @orders = Order.all
