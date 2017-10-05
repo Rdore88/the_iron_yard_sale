@@ -7,19 +7,19 @@ export default class App extends Component{
       <div className="d-flex flex-row">
         <ul className="nav flex-column">
           <li className="nav-item">
-            <Link className="nav-link" href="#">All Items</Link>
+            <Link className="nav-link" to="#">All Items</Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link" href="#">Furniture</Link>
+            <Link className="nav-link" to="#">Furniture</Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link" href="#">Kitchen</Link>
+            <Link className="nav-link" to="#">Kitchen</Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link" href="#">Decor</Link>
+            <Link className="nav-link" to="#">Decor</Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link" href="#">Games</Link>
+            <Link className="nav-link" to="#">Games</Link>
           </li>
       </ul>
 
