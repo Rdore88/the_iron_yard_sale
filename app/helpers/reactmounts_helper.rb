@@ -1,0 +1,2 @@
+module ReactmountsHelper
+end
