@@ -1,4 +1,4 @@
-import { STORE_INVENTORY } from './actions';
+import { SET_STORE_INVENTORY } from './actions';
 import update from 'immutability-helper';
 
 const initialState = {
@@ -7,7 +7,7 @@ const initialState = {
 
 const reducer = function(state = initialState, action) {
   switch (action.type) {
-    case STORE_INVENTORY:
+    case SET_STORE_INVENTORY:
       return update(state, {
         inventory: {
           $set: action.payload

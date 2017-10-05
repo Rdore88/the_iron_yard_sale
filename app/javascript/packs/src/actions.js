@@ -1,8 +1,8 @@
-export const STORE_INVENTORY = 'STORE_INVENTORY';
+export const SET_STORE_INVENTORY = 'STORE_INVENTORY';
 
-export const storeInventory = (inventoryArray) => {
+export const setStoreInventory = (inventoryArray) => {
   return {
-    action: 'STORE_INVENTORY',
+    action: 'SET_STORE_INVENTORY',
     payload: inventoryArray
   }
 }
