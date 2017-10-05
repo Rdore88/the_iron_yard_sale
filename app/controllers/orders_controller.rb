@@ -4,14 +4,13 @@ class OrdersController < ApplicationController
 
   def index
     @orders = Order.all
-    render json: @orders
+    output = Order.organize(@orders)
+    render json: output
   end
 
   def create
     @order = Order.new(order_params)
     @order.confirmed = false
-    item = Item.find(order_params.item_id)
-    @order.title = item.title
     if @order.save
       render json: {message: "Created order"}
     else
