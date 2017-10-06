@@ -11,6 +11,7 @@ import reducers from './reducers.js';
 
 import BaseLayout from './components/BaseLayout';
 import App from './components/App';
+import AdminLogin from './components/AdminLogin';
 import AdminPending from './components/AdminPending';
 
 const store = createStore(
@@ -24,7 +25,7 @@ ReactDOM.render(
       <BaseLayout>
         <Switch>
           <Route exact path='/' component={App} />
-          <Route exact path='/admin' component={AdminPending} />
+          <Route exact path='/admin' component={AdminLogin} />
         </Switch>
       </BaseLayout>
     </BrowserRouter>
