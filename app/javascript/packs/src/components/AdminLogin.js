@@ -7,9 +7,6 @@ export default class AdminLogin extends Component{
       name: '',
       password: ''
     }
-    this.handleName = this.handleName.bind(this);
-    this.handlePassword = this.handlePassword.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
   handleName = e => {
     this.setState({ name: e.target.value });
@@ -18,7 +15,8 @@ export default class AdminLogin extends Component{
     this.setState({ password: e.target.value });
   }
   handleSubmit = () => {
-    console.log('this.state:', this.state);
+    // Send form information to backend
+    this.setState({ name: '', password: '' });
   }
   render(){
     return(
@@ -31,7 +29,7 @@ export default class AdminLogin extends Component{
           </div>
           <div className="form-group">
             <label htmlFor="loginPassword">Password</label>
-            <input type="password" className="form-control" id="loginPassword" placeholder="Password" value={ this.state.password } onChange={ this.handlePassword }/>
+            <input type="password" className="form-control" id="loginPassword" placeholder="Password" value={ this.state.password } onChange={ this.handlePassword }/> in
           </div>
           <button type="submit" className="btn btn-secondary mx-auto">Login</button>
         </form>
