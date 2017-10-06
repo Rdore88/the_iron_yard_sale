@@ -8,8 +8,9 @@ class ItemsController < ApplicationController
   end
 
   def show
-    if authorize!
+    if current_user
       render json: {item: @item, orders: @item.orders}
+      return
     else
       render json: @item
     end

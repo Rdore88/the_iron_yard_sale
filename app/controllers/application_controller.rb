@@ -6,13 +6,11 @@ class ApplicationController < ActionController::Base
   helper_method :authorize!
 
   def current_user
-    @current_user ||= User.find_by(params[:id])
+    @current_user ||= User.find_by(id: params[:user_id])
   end
 
   def authorize!
-    if current_user
-      true
-    else
+    unless current_user
       render json: {message: "Please log in"}
     end
   end
