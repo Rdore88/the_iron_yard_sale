@@ -34,11 +34,19 @@ class ItemsController < ApplicationController
   end
 
   def subtract_quantity
-    @item.update(quantity: @item.quantity - item_params.quantity)
+    if @item.update(quantity: @item.quantity - item_params["quantity"].to_i)
+      render json: {message: "Reduced amount of item"}
+    else
+      render json: {message: "couldnt reduce amount"}
+    end
   end
 
   def add_quantity
-    @item.update(quantity: @item.quantity + item_params.quantity)
+    if @item.update(quantity: @item.quantity + item_params["quantity"].to_i)
+      render json: {message: "Added amount of item"}
+    else
+      render json: {message: "couldnt add amount"}
+    end
   end
 
   def update

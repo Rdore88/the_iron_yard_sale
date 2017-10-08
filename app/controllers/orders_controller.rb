@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   before_action :get_order, except: [:index, :create]
-  before_action :authroize!, except: [:create]
+  before_action :authorize!, except: [:create]
 
   def index
     @orders = Order.all
@@ -27,11 +27,19 @@ class OrdersController < ApplicationController
   end
 
   def confirm_order
-    @order.update(confirmed: true)
+    if @order.update(confirmed: true)
+      render json: {message: "Order confirmed"}
+    else
+      render json: {message: "Couldn't confirm order"}
+    end
   end
 
   def update
-    @order.update(order_params)
+    if @order.update(order_params)
+      render json: {message: "Updated order"}
+    else
+      render json: {message: "Didn't update order"}
+    end
   end
 
   private

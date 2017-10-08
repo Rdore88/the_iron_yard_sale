@@ -43,4 +43,25 @@ RSpec.describe ItemsController, type: :controller do
     # always have two keys coming back, the item and all orders associated with it
     expect(JSON.parse(response.body).length).to eq(2)
   end
+
+  it "adds quantity to item" do
+    item = Item.create!(title: "desk", description: "The best desk ever", price: 20.99, category: "furniture", quantity: 50)
+    get :add_quantity, params: {id: item.id, user_id: robby.id, item: {quantity: 10}}
+    assert response.ok?
+    expect(Item.find_by(title: "desk").quantity).to be(60)
+  end
+
+  it "subtracts quantity to item" do
+    item = Item.create!(title: "desk", description: "The best desk ever", price: 20.99, category: "furniture", quantity: 50)
+    get :subtract_quantity, params: {id: item.id, user_id: robby.id, item: {quantity: 10}}
+    assert response.ok?
+    expect(Item.find_by(title: "desk").quantity).to be(40)
+  end
+
+  it "returns all items" do
+    Item.create!(title: "desk", description: "The best desk ever", price: 20.99, category: "furniture", quantity: 50)
+    get :index
+    assert response.ok?
+    expect(JSON.parse(response.body).length).to be >=1
+  end
 end

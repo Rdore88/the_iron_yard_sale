@@ -3,7 +3,7 @@ class Order < ApplicationRecord
 
   def self.organize(orders)
     output = []
-    orders.forEach do |order|
+    orders.each do |order|
       output.push({order: order, item: order.item})
     end
     output
