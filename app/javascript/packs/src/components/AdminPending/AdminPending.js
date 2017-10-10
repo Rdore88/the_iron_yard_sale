@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 
-import AdminNav from './AdminNav';
-import AdminPendingItem from './AdminPendingItem';
+import AdminNav from '../AdminNav/AdminNav';
+import AdminPendingItem from '../AdminPendingItem/AdminPendingItem';
 
 export default class AdminPending extends Component{
   render(){

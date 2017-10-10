@@ -1,0 +1,62 @@
+[
+  {
+    "user_id": 1,
+    "item": {
+      "title": "chair",
+      "description": "The best chair, everybody says so",
+      "price": 10.00,
+      "category": "Furniture",
+      "quantity": 50
+    }
+  },
+  {
+    "user_id": 1,
+    "item": {
+      "title": "desk",
+      "description": "The best desk, everybody says so",
+      "price": 20.99,
+      "category": "Furniture",
+      "quantity": 10
+    }
+  },
+  {
+    "user_id": 2,
+    "item": {
+      "title": "lamp",
+      "description": "The best lamp, everybody says so",
+      "price": 5.99,
+      "category": "Furniture",
+      "quantity": 2
+    }
+  },
+  {
+    "user_id": 2,
+    "item": {
+      "title": "fan",
+      "description": "The best fan, everybody says so",
+      "price": 4.99,
+      "category": "Furniture",
+      "quantity": 4
+    }
+  },
+  {
+    "user_id": 2,
+    "item": {
+      "title": "table",
+      "description": "The best table, everybody says so",
+      "price": 40.99,
+      "category": "Furniture",
+      "quantity": 15
+    }
+  },
+  {
+    "user_id": 2,
+    "item": {
+      "title": "Wii",
+      "description": "The best wii, everybody says so",
+      "price": 70.99,
+      "category": "Media/Electronics",
+      "quantity": 1
+    }
+  }
+]

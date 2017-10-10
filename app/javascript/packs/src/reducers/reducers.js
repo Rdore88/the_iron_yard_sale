@@ -1,4 +1,4 @@
-import { SET_STORE_INVENTORY } from './actions';
+import { SET_STORE_INVENTORY } from '../actions/inventoryActions';
 import update from 'immutability-helper';
 
 const initialState = {

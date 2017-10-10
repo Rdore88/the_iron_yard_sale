@@ -7,12 +7,11 @@ import registerServiceWorker from './registerServiceWorker';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import reduxThunk from 'redux-thunk';
-import reducers from './reducers.js';
+import reducers from './reducers/reducers.js';
 
-import BaseLayout from './components/BaseLayout';
-import App from './components/App';
-import AdminLogin from './components/AdminLogin';
-import AdminPending from './components/AdminPending';
+import BaseLayout from './components/BaseLayout/BaseLayout';
+import Home from './containers/Home/index';
+import AdminLogin from './components/AdminLogin/AdminLogin';
 
 const store = createStore(
     reducers,
@@ -24,7 +23,7 @@ ReactDOM.render(
     <BrowserRouter>
       <BaseLayout>
         <Switch>
-          <Route exact path='/' component={App} />
+          <Route exact path='/' component={Home} />
           <Route exact path='/admin' component={AdminLogin} />
         </Switch>
       </BaseLayout>
