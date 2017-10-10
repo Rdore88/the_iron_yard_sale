@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
+import { connect } from 'react-redux';
+import {login} from '../../actions/index';
 
-export default class AdminLogin extends Component{
+class AdminLogin extends Component{
   constructor(props) {
     super(props);
     this.state = {
@@ -14,15 +16,15 @@ export default class AdminLogin extends Component{
   handlePassword = e => {
     this.setState({ password: e.target.value });
   }
-  handleSubmit = () => {
-    // Send form information to backend
-    this.setState({ name: '', password: '' });
-  }
+
   render(){
     return(
       <div className="m-3 p-3 card w-50 mx-auto">
         <h1 className="">Login</h1>
-        <form onSubmit={ this.handleSubmit }>
+        <form onSubmit={this.props.login({
+          name: this.state.name,
+          password: this.state.password
+        })}>
           <div className="form-group">
             <label htmlFor="loginName">Name</label>
             <input type="text" className="form-control" id="loginName" placeholder="Enter name" value={ this.state.name } onChange={ this.handleName }/>
@@ -37,3 +39,17 @@ export default class AdminLogin extends Component{
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    user: state.user
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    login: (obj) => dispatch(login(obj))
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(AdminLogin);

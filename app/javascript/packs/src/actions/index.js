@@ -1,5 +1,7 @@
-import InventoryActions from './inventoryActions.js';
+import {setStoreInventory} from './inventoryActions.js';
+import {login} from './loginActions.js';
 
-export const actions = {
-  InventoryActions
+export {
+  setStoreInventory,
+  login
 }

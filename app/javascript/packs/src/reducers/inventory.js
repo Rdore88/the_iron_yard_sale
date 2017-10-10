@@ -5,7 +5,7 @@ const initialState = {
     inventory: []
 }
 
-const reducer = function(state = initialState, action) {
+const inventory = function(state = initialState, action) {
   switch (action.type) {
     case SET_STORE_INVENTORY:
       return update(state, {
@@ -18,4 +18,4 @@ const reducer = function(state = initialState, action) {
   }
 }
 
-export default reducer;
+export {inventory};
