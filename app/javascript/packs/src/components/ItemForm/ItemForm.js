@@ -41,8 +41,18 @@ class ItemForm extends Component {
   }
 
   render() {
+    let errorMessage = null;
+
+    if (this.props.createItemErrorMessages) {
+      errorMessage =
+      <div className="alert alert-danger" role="alert">
+        {this.props.createItemErrorMessages}
+      </div>
+    }
+
     return (
       <div className="m-3 p-3 card w-50 mx-auto">
+        {errorMessage}
         <div className="form-group">
           <label htmlFor="orderTitle">Title</label>
           <input type="text" className="form-control" id="orderTitle" placeholder="Enter Title" value={ this.state.title } onChange={ this.handleTitle }/>
@@ -71,7 +81,8 @@ class ItemForm extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    user: state.user
+    user: state.user,
+    createItemErrorMessages: state.inventory.createItemErrorMessages
   };
 };
 

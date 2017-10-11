@@ -1,8 +1,9 @@
-import { SET_STORE_INVENTORY } from '../actions/inventoryActions';
+import { SET_STORE_INVENTORY, SET_ITEM_FORM_ERROR } from '../actions/inventoryActions';
 import update from 'immutability-helper';
 
 const initialState = {
-    inventory: []
+    inventory: [],
+    createItemErrorMessages: ''
 }
 
 const inventory = function(state = initialState, action) {
@@ -13,6 +14,12 @@ const inventory = function(state = initialState, action) {
           $set: action.payload
         }
       });
+    case SET_ITEM_FORM_ERROR:
+      return update(state, {
+        createItemErrorMessages: {
+          $set: action.payload
+        }
+      })
     default:
       return state;
   }

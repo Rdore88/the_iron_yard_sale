@@ -31,7 +31,6 @@ const fetchInventory = () => {
         return res.json();
       })
       .then(json => {
-        console.log("INVENTORY: ", json);
         return dispatch(setStoreInventory(json));
       });
   }
@@ -53,7 +52,6 @@ const createInventoryItem = (action) => {
       })
       .then(json => {
         if (json.message) {
-          console.log("ERROR", json.message);
           return dispatch(setItemFormError(json.message))
         }
         fetchInventory();
