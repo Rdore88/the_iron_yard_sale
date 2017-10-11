@@ -55,7 +55,7 @@ class AdminLogin extends Component{
           </div>
           <div className="form-group">
             <label htmlFor="loginPassword">Password</label>
-            <input type="password" className="form-control" id="loginPassword" placeholder="Password" value={ this.state.password } onChange={ this.handlePassword }/> in
+            <input type="password" className="form-control" id="loginPassword" placeholder="Password" value={ this.state.password } onChange={ this.handlePassword }/>
           </div>
           <button type="button" onClick={this.handleSubmit} className="btn btn-secondary mx-auto">Login</button>
         </div>

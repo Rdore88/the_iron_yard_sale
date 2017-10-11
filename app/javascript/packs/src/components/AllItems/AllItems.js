@@ -1,25 +1,43 @@
 import React, {Component} from 'react';
-import mockItems from '../../testData/mockItems.json';
-
-import './AllItems.css';
 
 export default class AllItems extends Component{
   constructor(props) {
     super(props)
   }
+  generateInventoryList = (filter) => {
+    let filteredItems = this.props.inventoryItems.inventory.filter(item => {
+      return item.category === filter;
+    });
+
+    let listedItems = filteredItems.map((item, index) => {
+      return (
+        <li key={index}>
+          <div className="card" style={{width: "20rem"}}>
+            <div className="card-body">
+              <h4 className="card-title">{item.title}</h4>
+              <h6 className="card-subtitle mb-2 text-muted">{item.category}</h6>
+              <p className="card-text">{item.description}</p>
+            </div>
+          </div>
+        </li>
+      );
+    })
+
+    return listedItems;
+  }
   render(){
-    let items, filteredItems;
+    let items;
 
     switch (this.props.filter) {
       case "All":
-        items = mockItems.map((item, index) => {
+        items = this.props.inventoryItems.inventory.map((item, index) => {
           return (
             <li key={index}>
               <div className="card" style={{width: "20rem"}}>
                 <div className="card-body">
-                  <h4 className="card-title">{item.item.title}</h4>
-                  <h6 className="card-subtitle mb-2 text-muted">{item.item.category}</h6>
-                  <p className="card-text">{item.item.description}</p>
+                  <h4 className="card-title">{item.title}</h4>
+                  <h6 className="card-subtitle mb-2 text-muted">{item.category}</h6>
+                  <p className="card-text">{item.description}</p>
                 </div>
               </div>
             </li>
@@ -27,118 +45,22 @@ export default class AllItems extends Component{
         })
         break;
       case "Furniture":
-        filteredItems = mockItems.filter(item => {
-          return item.item.category === "Furniture";
-        });
-
-        items = filteredItems.map((item, index) => {
-          return (
-            <li key={index}>
-              <div className="card" style={{width: "20rem"}}>
-                <div className="card-body">
-                  <h4 className="card-title">{item.item.title}</h4>
-                  <h6 className="card-subtitle mb-2 text-muted">{item.item.category}</h6>
-                  <p className="card-text">{item.item.description}</p>
-                </div>
-              </div>
-            </li>
-          );
-        })
+        items = this.generateInventoryList("Furniture");
         break;
       case "Art & Decor":
-        filteredItems = mockItems.filter(item => {
-          return item.item.category === "Art & Decor";
-        });
-
-        items = filteredItems.map((item, index) => {
-          return (
-            <li key={index}>
-              <div className="card" style={{width: "20rem"}}>
-                <div className="card-body">
-                  <h4 className="card-title">{item.item.title}</h4>
-                  <h6 className="card-subtitle mb-2 text-muted">{item.item.category}</h6>
-                  <p className="card-text">{item.item.description}</p>
-                </div>
-              </div>
-            </li>
-          );
-        })
+        items = this.generateInventoryList("Art & Decor");
         break;
       case "Lighting":
-        filteredItems = mockItems.filter(item => {
-          return item.item.category === "Lighting";
-        });
-
-        items = filteredItems.map((item, index) => {
-          return (
-            <li key={index}>
-              <div className="card" style={{width: "20rem"}}>
-                <div className="card-body">
-                  <h4 className="card-title">{item.item.title}</h4>
-                  <h6 className="card-subtitle mb-2 text-muted">{item.item.category}</h6>
-                  <p className="card-text">{item.item.description}</p>
-                </div>
-              </div>
-            </li>
-          );
-        })
+        items = this.generateInventoryList("Lighting");
         break;
       case "Kitchen":
-        filteredItems = mockItems.filter(item => {
-          return item.item.category === "Kitchen";
-        });
-
-        items = filteredItems.map((item, index) => {
-          return (
-            <li key={index}>
-              <div className="card" style={{width: "20rem"}}>
-                <div className="card-body">
-                  <h4 className="card-title">{item.item.title}</h4>
-                  <h6 className="card-subtitle mb-2 text-muted">{item.item.category}</h6>
-                  <p className="card-text">{item.item.description}</p>
-                </div>
-              </div>
-            </li>
-          );
-        })
+        items = this.generateInventoryList("Kitchen");
         break;
       case "Media/Electronics":
-        filteredItems = mockItems.filter(item => {
-          return item.item.category === "Media/Electronics";
-        });
-
-        items = filteredItems.map((item, index) => {
-          return (
-            <li key={index}>
-              <div className="card" style={{width: "20rem"}}>
-                <div className="card-body">
-                  <h4 className="card-title">{item.item.title}</h4>
-                  <h6 className="card-subtitle mb-2 text-muted">{item.item.category}</h6>
-                  <p className="card-text">{item.item.description}</p>
-                </div>
-              </div>
-            </li>
-          );
-        })
+        items = this.generateInventoryList("Media/Electronics");
         break;
       case "Office Supplies":
-        filteredItems = mockItems.filter(item => {
-          return item.item.category === "Office Supplies";
-        });
-
-        items = filteredItems.map((item, index) => {
-          return (
-            <li key={index}>
-              <div className="card" style={{width: "20rem"}}>
-                <div className="card-body">
-                  <h4 className="card-title">{item.item.title}</h4>
-                  <h6 className="card-subtitle mb-2 text-muted">{item.item.category}</h6>
-                  <p className="card-text">{item.item.description}</p>
-                </div>
-              </div>
-            </li>
-          );
-        })
+        items = this.generateInventoryList("Office Supplies");
         break;
       default:
         items = ""

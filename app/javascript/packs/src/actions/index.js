@@ -1,7 +1,9 @@
-import {setStoreInventory} from './inventoryActions.js';
+import {setStoreInventory, createInventoryItem, fetchInventory} from './inventoryActions.js';
 import {login} from './loginActions.js';
 
 export {
   setStoreInventory,
-  login
+  login,
+  createInventoryItem,
+  fetchInventory
 }

@@ -8,16 +8,13 @@ export default class AdminNav extends Component{
         <div className="card-header">
           <ul className="nav nav-pills card-header-pills">
             <li className="nav-item">
-              <NavLink className="nav-link" activeClassName="active" to="/admin/listing">Listed Items</NavLink>
+              <NavLink className="nav-link" activeClassName="active" to="/">Store</NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" activeClassName="active" to="/admin">Pending Approval</NavLink>
+              <NavLink className="nav-link" activeClassName="active" to="/admin">Orders</NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" activeClassName="active" to="/admin/approved">Approved</NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" activeClassName="active" to="/admin/sold">Sold</NavLink>
+              <NavLink className="nav-link" activeClassName="active" to="/admin/approved">Completed Orders</NavLink>
             </li>
           </ul>
         </div>

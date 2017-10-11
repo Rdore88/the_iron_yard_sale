@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
 import AllItems from '../../components/AllItems/AllItems';
+import {connect} from 'react-redux';
+import {fetchInventory} from '../../actions/index';
 
-export default class App extends Component{
+class App extends Component{
   constructor() {
     super()
 
@@ -17,6 +19,10 @@ export default class App extends Component{
       filter: filter,
       viewingList: true
     })
+  }
+
+  componentDidMount() {
+    this.props.fetchInventory();
   }
 
   render(){
@@ -60,9 +66,24 @@ export default class App extends Component{
       <div className="jumbotron ml-3">
         {intro}
 
-        <AllItems filter={this.state.filter}/>
+        <AllItems inventoryItems={this.props.inventory} filter={this.state.filter}/>
       </div>
     </div>
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    user: state.user,
+    inventory: state.inventory
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchInventory: () => dispatch(fetchInventory())
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
