@@ -7,7 +7,7 @@ import registerServiceWorker from './registerServiceWorker';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import reduxThunk from 'redux-thunk';
-import reducers from './reducers/reducers.js';
+import reducers from './reducers/index.js';
 
 import BaseLayout from './components/BaseLayout/BaseLayout';
 import Home from './containers/Home/index';
@@ -15,6 +15,7 @@ import AdminLogin from './components/AdminLogin/AdminLogin';
 
 const store = createStore(
     reducers,
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
     applyMiddleware(reduxThunk)
 );
 

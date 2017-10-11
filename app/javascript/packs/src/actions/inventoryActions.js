@@ -7,4 +7,4 @@ const setStoreInventory = (inventoryArray) => {
   }
 }
 
-export default {setStoreInventory};
+export {setStoreInventory};
