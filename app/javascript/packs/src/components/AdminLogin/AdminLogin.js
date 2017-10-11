@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import {login} from '../../actions/index';
+import {Redirect} from 'react-router-dom';
 
 class AdminLogin extends Component{
   constructor(props) {
@@ -17,14 +18,37 @@ class AdminLogin extends Component{
     this.setState({ password: e.target.value });
   }
 
+  handleSubmit = () => {
+    this.props.login({
+      name: this.state.name,
+      password: this.state.password
+    })
+  }
+
   render(){
+    let errorMessage = null;
+
+    if (this.props.user.loginErrorMessages) {
+      errorMessage =
+      <div className="alert alert-danger" role="alert">
+        {this.props.user.loginErrorMessages}
+      </div>
+    }
+
+    if (this.props.user.user_id) {
+      return (
+        <Redirect to={{
+          pathname: '/admin',
+          state: { from: this.props.location }
+        }} />
+      )
+    }
+
     return(
       <div className="m-3 p-3 card w-50 mx-auto">
-        <h1 className="">Login</h1>
-        <form onSubmit={this.props.login({
-          name: this.state.name,
-          password: this.state.password
-        })}>
+        <h1>Login</h1>
+        {errorMessage}
+        <div>
           <div className="form-group">
             <label htmlFor="loginName">Name</label>
             <input type="text" className="form-control" id="loginName" placeholder="Enter name" value={ this.state.name } onChange={ this.handleName }/>
@@ -33,8 +57,8 @@ class AdminLogin extends Component{
             <label htmlFor="loginPassword">Password</label>
             <input type="password" className="form-control" id="loginPassword" placeholder="Password" value={ this.state.password } onChange={ this.handlePassword }/> in
           </div>
-          <button type="submit" className="btn btn-secondary mx-auto">Login</button>
-        </form>
+          <button type="button" onClick={this.handleSubmit} className="btn btn-secondary mx-auto">Login</button>
+        </div>
       </div>
     )
   }
