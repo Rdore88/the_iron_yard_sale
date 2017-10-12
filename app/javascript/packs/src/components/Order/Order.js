@@ -7,7 +7,6 @@ export default class Order extends Component{
   render(){
     let order = this.props.orderData.order;
     let item = this.props.orderData.item;
-    console.log("ORDER OBJ: ", order);
     return(
       <div className="card p-4 w-100" style={{width: "20rem"}}>
         <p className="card-subtitle mb-2 text-muted">{order.name_of_buyer}</p>

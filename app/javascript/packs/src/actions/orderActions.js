@@ -22,7 +22,6 @@ const fetchOrders = (id) => {
         return res.json();
       })
       .then(json => {
-        console.log("ORDERJSON ", json);
         return dispatch(setStoreOrders(json));
       });
   }

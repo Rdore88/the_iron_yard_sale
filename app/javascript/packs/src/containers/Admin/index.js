@@ -24,7 +24,6 @@ class Admin extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log("STATE: ", state);
   return {
     user: state.user,
     orderList: state.orders.orderList
