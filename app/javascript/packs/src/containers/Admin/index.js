@@ -5,9 +5,6 @@ import {connect} from 'react-redux';
 import {fetchOrders} from '../../actions/index';
 
 class Admin extends Component {
-  constructor() {
-    super()
-  }
   componentDidMount() {
     if (this.props.user.user_id) {
       this.props.fetchOrders(this.props.user.user_id);
