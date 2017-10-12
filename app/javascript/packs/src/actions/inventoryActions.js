@@ -4,7 +4,6 @@ export const SET_STORE_INVENTORY = 'STORE_INVENTORY';
 export const SET_ITEM_FORM_ERROR = 'SET_ITEM_FORM_ERROR';
 
 const setStoreInventory = (inventory) => {
-  console.log("Got to setStoreInventory AC: ", inventory);
   return {
     type: SET_STORE_INVENTORY,
     payload: inventory

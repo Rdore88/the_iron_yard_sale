@@ -41,7 +41,6 @@ const login = (action) => {
           return res.json();
         })
         .then(json => {
-          console.log("JSON: ", json);
           if (json.message) {
             return dispatch(setLoginError(json.message))
           }
