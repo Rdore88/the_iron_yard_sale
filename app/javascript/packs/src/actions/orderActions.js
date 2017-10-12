@@ -27,4 +27,23 @@ const fetchOrders = (id) => {
   }
 }
 
-export {fetchOrders};
+const createOrder = (obj, id) => {
+  return (dispatch, getState) => {
+    let options = {
+      method: "POST",
+      body: JSON.stringify(obj),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }
+    fetch(BASE_DEV_URL + "/api/orders", options)
+      .then(res => {
+        return res.json();
+      })
+      .then(json => {
+        return dispatch(fetchOrders(id));
+      });
+  }
+}
+
+export {fetchOrders, createOrder};
