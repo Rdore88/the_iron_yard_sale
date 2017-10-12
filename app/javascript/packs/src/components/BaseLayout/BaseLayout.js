@@ -5,7 +5,7 @@ import Header from '../Header/Header';
 export default class BaseLayout extends Component{
   render(){
     return(
-      <div className="">
+      <div>
         <Header />
         {this.props.children}
       </div>
