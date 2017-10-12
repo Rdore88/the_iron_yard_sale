@@ -71,7 +71,15 @@ class ItemForm extends Component {
         </div>
         <div className="form-group">
           <label htmlFor="orderCategory">Category</label>
-          <input type="text" className="form-control" id="orderCategory" placeholder="Enter Category" value={ this.state.category } onChange={ this.handleCategory }/>
+          <select className="form-control" id="orderCategory" value={ this.state.category } onChange={ this.handleCategory }>
+            <option>Art & Decor</option>
+            <option>Furniture</option>
+            <option>Games</option>
+            <option>Kitchen</option>
+            <option>Lighting</option>
+            <option>Media/Electronics</option>
+            <option>Office Supplies</option>
+          </select>
         </div>
         <button type="button" onClick={this.handleSubmit} className="btn btn-secondary mx-auto">Submit</button>
       </div>

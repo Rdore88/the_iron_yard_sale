@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {deleteInventoryItem} from '../../actions/index';
 
-export default class AllItems extends Component{
+class AllItems extends Component{
   constructor(props) {
     super(props)
   }
@@ -25,6 +27,7 @@ export default class AllItems extends Component{
 
     return listedItems;
   }
+
   render(){
     let items;
 
@@ -38,7 +41,18 @@ export default class AllItems extends Component{
                   <h4 className="card-title">{item.title}</h4>
                   <h6 className="card-subtitle mb-2 text-muted">{item.category}</h6>
                   <p className="card-text">{item.description}</p>
+                  <h4 className="card-title">${item.price}</h4>
+                  <h4 className="card-title"># In Stock: {item.quantity}</h4>
                 </div>
+                {this.props.user.user_id &&
+                  <button
+                    type="button"
+                    className="btn btn-danger"
+                    onClick={() => this.props.deleteInventoryItem({
+                      user_id: this.props.user.user_id,
+                      id: item.id
+                    })}>Delete</button>
+                }
               </div>
             </li>
           );
@@ -59,6 +73,9 @@ export default class AllItems extends Component{
       case "Media/Electronics":
         items = this.generateInventoryList("Media/Electronics");
         break;
+      case "Games":
+        items = this.generateInventoryList("Games");
+        break;
       case "Office Supplies":
         items = this.generateInventoryList("Office Supplies");
         break;
@@ -73,3 +90,18 @@ export default class AllItems extends Component{
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    user: state.user
+  };
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    deleteInventoryItem: (obj) => dispatch(deleteInventoryItem(obj))
+  };
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(AllItems);

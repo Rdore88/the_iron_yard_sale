@@ -60,13 +60,16 @@ class App extends Component{
             <Link className="nav-link" to="#" onClick={() => this.updateFilter("Media/Electronics")}>Media/Electronics</Link>
           </li>
           <li className="nav-item">
+            <Link className="nav-link" to="#" onClick={() => this.updateFilter("Games")}>Games</Link>
+          </li>
+          <li className="nav-item">
             <Link className="nav-link" to="#" onClick={() => this.updateFilter("Office Supplies")}>Office Supplies</Link>
           </li>
         </ul>
       <div className="jumbotron ml-3">
         {intro}
 
-        <AllItems inventoryItems={this.props.inventory} filter={this.state.filter}/>
+        <AllItems user={this.props.user} inventoryItems={this.props.inventory} filter={this.state.filter}/>
       </div>
     </div>
     )
