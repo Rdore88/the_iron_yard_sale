@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Order from '../Order/Order';
+import {connect} from 'react-redux';
 
 export default class OrderList extends Component{
   constructor(props) {
@@ -8,7 +9,11 @@ export default class OrderList extends Component{
   render(){
     let orderList = this.props.orderList.map((order) => {
       return (
-        <Order key={order.order.id} orderData={order}/>
+        <Order
+          key={order.order.id}
+          orderData={order}
+          confirmOrder={(id) => this.props.confirmOrder(id)}
+          rejectOrder={(id) => this.props.rejectOrder(id)}/>
       );
     });
 

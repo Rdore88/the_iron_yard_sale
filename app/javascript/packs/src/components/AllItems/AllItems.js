@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import { NavLink } from 'react-router-dom';
 import {deleteInventoryItem} from '../../actions/index';
 
 class AllItems extends Component{
@@ -44,6 +45,9 @@ class AllItems extends Component{
                   <h4 className="card-title">${item.price}</h4>
                   <h4 className="card-title"># In Stock: {item.quantity}</h4>
                 </div>
+                <NavLink
+                  className="btn btn-success"
+                  to={"/item/" + item.id}>Order Item</NavLink>
                 {this.props.user.user_id &&
                   <button
                     type="button"

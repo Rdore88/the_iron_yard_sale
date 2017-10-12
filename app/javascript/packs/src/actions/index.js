@@ -5,7 +5,10 @@ import {
   deleteInventoryItem
 } from './inventoryActions.js';
 import {
-  fetchOrders
+  fetchOrders,
+  createOrder,
+  confirmOrder,
+  rejectOrder
 } from './orderActions.js';
 import {
   login
@@ -17,5 +20,8 @@ export {
   createInventoryItem,
   fetchInventory,
   deleteInventoryItem,
-  fetchOrders
+  fetchOrders,
+  createOrder,
+  confirmOrder,
+  rejectOrder
 }
