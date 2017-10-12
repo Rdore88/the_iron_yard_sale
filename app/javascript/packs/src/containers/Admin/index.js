@@ -11,11 +11,9 @@ class Admin extends Component {
     }
   }
   confirmOrder = (id) => {
-    console.log("ID ", id);
     this.props.confirmOrder(id, this.props.user.user_id);
   }
   rejectOrder = (id) => {
-    console.log("ID ", id);
     this.props.rejectOrder(id, this.props.user.user_id);
   }
   render() {
