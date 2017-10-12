@@ -12,6 +12,7 @@ class OrdersController < ApplicationController
     @order = Order.new(order_params)
     @order.confirmed = false
     if @order.save
+      OrderToAdminMailer.new_order(@order).deliver_later
       render json: {status: :created, message: "Created order"}
     else
       render json: {status: "failed", message: "Order Not Created!"}

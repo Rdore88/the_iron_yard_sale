@@ -12,7 +12,6 @@ class ItemForm extends Component {
       price: '',
       quantity: '',
       category: '',
-      image: ''
     }
   }
 
@@ -31,12 +30,8 @@ class ItemForm extends Component {
   handleCategory = (e) => {
     this.setState({category: e.target.value});
   }
-  handleItemImage = (e) => {
-    this.setState({image: image});
-  }
 
   handleSubmit = () => {
-    console.log(this.state);
     let itemObj = {
       user_id: this.props.user.user_id ? this.props.user.user_id : undefined,
       item: this.state
@@ -54,7 +49,6 @@ class ItemForm extends Component {
         {this.props.createItemErrorMessages}
       </div>
     }
-    console.log(this.state);
 
     return (
       <div className="m-3 p-3 card w-50 mx-auto">
@@ -86,10 +80,6 @@ class ItemForm extends Component {
             <option>Media/Electronics</option>
             <option>Office Supplies</option>
           </select>
-        </div>
-        <div>
-          <label htmlFor="itemImage">Upload a picture</label>
-          <input type="file" className="form-control" id="image" onChange={ this.handleItemImage } />
         </div>
         <button type="button" onClick={this.handleSubmit} className="btn btn-secondary mx-auto">Submit</button>
       </div>
