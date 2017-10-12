@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
 
   def authorize!
     unless current_user
-      render json: {message: "Please log in"}
+      render json: {status: :unauthorized, message: "Please log in"}
     end
   end
 end

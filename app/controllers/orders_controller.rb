@@ -12,33 +12,33 @@ class OrdersController < ApplicationController
     @order = Order.new(order_params)
     @order.confirmed = false
     if @order.save
-      render json: {message: "Created order"}
+      render json: {status: :created, message: "Created order"}
     else
-      render json: {message: "Order Not Created!"}
+      render json: {status: "failed", message: "Order Not Created!"}
     end
   end
 
   def destroy
     if @order.destroy
-      render json: {message: "Destroyed order"}
+      render json: {status: "success", message: "Destroyed order"}
     else
-      render json: {message: "not destroyed"}
+      render json: {status: "failed", message: "not destroyed"}
     end
   end
 
   def confirm_order
     if @order.update(confirmed: true)
-      render json: {message: "Order confirmed"}
+      render json: {status: "success", message: "Order confirmed"}
     else
-      render json: {message: "Couldn't confirm order"}
+      render json: {status: "failed", message: "Couldn't confirm order"}
     end
   end
 
   def update
     if @order.update(order_params)
-      render json: {message: "Updated order"}
+      render json: {status: "success", message: "Updated order"}
     else
-      render json: {message: "Didn't update order"}
+      render json: {status: "failed", message: "Didn't update order"}
     end
   end
 

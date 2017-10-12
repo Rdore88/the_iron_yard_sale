@@ -2,8 +2,9 @@ require 'rails_helper'
 
 RSpec.describe ItemsController, type: :controller do
   let(:robby) {User.create!(name: "Robby", password: "robby", password_confirmation: "robby")}
+  let(:image) {Rails.root.join('app', 'spec', 'fixtures', 'images', 'test_cat.png')}
 
-  let(:params) {{user_id: robby.id, item: {title: "desk", description: "The best desk ever", price: 20.99, category: "furniture", quantity: 50}}}
+  let(:params) {{user_id: robby.id, item: {title: "desk", description: "The best desk ever", price: 20.99, category: "furniture", quantity: 50, image: image}}}
 
   let(:noauth_params) {{item: {title: "desk", description: "The best desk ever", price: 20.99, category: "furniture", quantity: 50}}}
 

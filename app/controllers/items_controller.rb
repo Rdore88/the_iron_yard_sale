@@ -18,45 +18,51 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
+    binding.pry
+    @item.image = item_params[:image]
     if @item.save
-      render json: {message: "Created item"}
+      render json: {status: :created, message: "Created item"}
     else
-      render json: {message: "Not Created!"}
+      render json: {status: "failed", message: "Not Created!"}
     end
   end
 
   def destroy
     if @item.destroy
-      render json: {message: "Removed item from inventory"}
+      render json: {status: "success", message: "Removed item from inventory"}
     else
-      render json: {message: "Couldn't remove item"}
+      render json: {status: "failed", message: "Couldn't remove item"}
     end
   end
 
   def subtract_quantity
     if @item.update(quantity: @item.quantity - item_params["quantity"].to_i)
-      render json: {message: "Reduced amount of item"}
+      render json: {status: "success", message: "Reduced amount of item"}
     else
-      render json: {message: "couldnt reduce amount"}
+      render json: {status: "failed", message: "couldnt reduce amount"}
     end
   end
 
   def add_quantity
     if @item.update(quantity: @item.quantity + item_params["quantity"].to_i)
-      render json: {message: "Added amount of item"}
+      render json: {status: "success", message: "Added amount of item"}
     else
-      render json: {message: "couldnt add amount"}
+      render json: {status: "failed", message: "couldnt add amount"}
     end
   end
 
   def update
-    @item.update(item_params)
+    if @item.update(item_params)
+      render json: {status: "success", message: "updated item"}
+    else
+      render json: {status: "failed", message: "didn't update item"}
+    end
   end
 
   private
 
   def item_params
-    params.require(:item).permit(:title, :description, :price, :category, :quantity)
+    params.require(:item).permit(:title, :description, :price, :category, :quantity, :image)
   end
 
   def get_item
