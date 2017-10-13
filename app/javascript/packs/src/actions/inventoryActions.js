@@ -73,23 +73,17 @@ const deleteInventoryItem = (action) => {
         return res.json();
       })
       .then(json => {
-        // TODO: Need API change for checkout error status
-        // if (json.message) {
-        //   return dispatch(setItemFormError(json.message))
-        // }
+        if (json.status !== "success") {
+          return dispatch(setItemFormError(json.message))
+        }
         return dispatch(fetchInventory());
       });
   }
-}
-
-const subtractQuantity = (action) => {
-  
 }
 
 export {
   setStoreInventory,
   createInventoryItem,
   fetchInventory,
-  deleteInventoryItem,
-  subtractQuantity
+  deleteInventoryItem
 };

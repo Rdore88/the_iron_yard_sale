@@ -17,8 +17,17 @@ class Admin extends Component {
     this.props.rejectOrder(id, this.props.user.user_id);
   }
   render() {
+    let errorMessage;
+
+    if (this.props.orderErrorMessages) {
+      errorMessage =
+      <div className="alert alert-danger" role="alert">
+        {this.props.orderErrorMessages}
+      </div>
+    }
     return (
       <div>
+        {errorMessage}
         <OrderList
           userId={this.props.user.user_id}
           orderList={this.props.orderList}
@@ -33,7 +42,8 @@ class Admin extends Component {
 const mapStateToProps = (state) => {
   return {
     user: state.user,
-    orderList: state.orders.orderList
+    orderList: state.orders.orderList,
+    orderErrorMessages: state.orders.orderErrorMessages
   }
 };
 

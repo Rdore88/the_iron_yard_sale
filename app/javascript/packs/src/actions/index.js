@@ -2,8 +2,7 @@ import {
   setStoreInventory,
   createInventoryItem,
   fetchInventory,
-  deleteInventoryItem,
-  subtractQuantity
+  deleteInventoryItem
 } from './inventoryActions.js';
 import {
   fetchOrders,
@@ -24,6 +23,5 @@ export {
   fetchOrders,
   createOrder,
   confirmOrder,
-  rejectOrder,
-  subtractQuantity
+  rejectOrder
 }

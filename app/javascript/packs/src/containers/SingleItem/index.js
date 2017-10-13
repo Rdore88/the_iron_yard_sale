@@ -47,6 +47,15 @@ class SingleItem extends Component{
     });
   }
   render(){
+    let errorMessage;
+
+    if (this.props.orderErrorMessages) {
+      errorMessage =
+      <div className="alert alert-danger" role="alert">
+        {this.props.orderErrorMessages}
+      </div>
+    }
+
     const id = this.props.match.params.id;
     let item = this.props.inventory.map((item) => {
       if (item.id === Number(id)) {
@@ -58,6 +67,7 @@ class SingleItem extends Component{
             <div>{item.quantity}</div>
 
             <div>
+              {errorMessage}
               <div className="form-group">
                 <label htmlFor="orderName">Name</label>
                 <input type="text" className="form-control" id="orderName" placeholder="Enter Name" value={ this.state.name_of_buyer } onChange={ this.handleName }/>
@@ -93,7 +103,8 @@ class SingleItem extends Component{
 const mapStateToProps = (state) => {
   return {
     user: state.user,
-    inventory: state.inventory.inventory
+    inventory: state.inventory.inventory,
+    orderErrorMessages: state.orders.orderErrorMessages
   };
 };
 

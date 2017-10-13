@@ -41,7 +41,7 @@ const login = (action) => {
           return res.json();
         })
         .then(json => {
-          if (json.message) {
+          if (json.status !== "success") {
             return dispatch(setLoginError(json.message))
           }
           return dispatch(setUser(json.user_id));

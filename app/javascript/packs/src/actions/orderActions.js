@@ -2,10 +2,18 @@ import {BASE_DEV_URL} from '../constants.js';
 import {subtractQuantity} from './index';
 
 export const SET_STORE_ORDERS = 'SET_STORE_ORDERS';
+export const SET_ORDER_ERROR_MESSAGES = 'SET_ORDER_ERROR_MESSAGES';
 
 const setStoreOrders = (payload) => {
   return {
     type: SET_STORE_ORDERS,
+    payload: payload
+  }
+}
+
+const setOrderErrorMessages = (payload) => {
+  return {
+    type: SET_ORDER_ERROR_MESSAGES,
     payload: payload
   }
 }
@@ -23,6 +31,9 @@ const fetchOrders = (id) => {
         return res.json();
       })
       .then(json => {
+        if (json.status !== "success") {
+          return dispatch(setOrderErrorMessages(json.message))
+        }
         return dispatch(setStoreOrders(json));
       });
   }
@@ -44,7 +55,9 @@ const createOrder = (obj) => {
         return res.json();
       })
       .then(json => {
-        // return dispatch(fetchOrders(id));
+        if (json.status !== "success") {
+          return dispatch(setOrderErrorMessages(json.message))
+        }
       });
   }
 }
@@ -63,6 +76,9 @@ const confirmOrder = (action, user_id) => {
         return res.json();
       })
       .then((json) => {
+        if (json.status !== "success") {
+          return dispatch(setOrderErrorMessages(json.message))
+        }
         let quantityObj = {
           user_id: user_id,
           item: {
@@ -82,7 +98,10 @@ const confirmOrder = (action, user_id) => {
           .then(res => {
             return res.json();
           })
-          .then(json => {
+          .then(json2 => {
+            if (json2.status !== "success") {
+              return dispatch(setOrderErrorMessages(json2.message))
+            }
             return dispatch(fetchOrders(user_id));
           })
           .catch(err => {
