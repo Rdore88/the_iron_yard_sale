@@ -11,7 +11,9 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
     @order.confirmed = false
-    if @order.save
+    if (@order.item.quantity - @order.quantity) < 0
+      render json: {status: "failed", message: "Not enough in stock to complete order"}
+    elsif @order.save
       OrderToAdminMailer.new_order(@order).deliver_later
       render json: {status: :created, message: "Created order"}
     else
