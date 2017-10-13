@@ -11,7 +11,7 @@ class ItemForm extends Component {
       description: '',
       price: '',
       quantity: '',
-      category: ''
+      category: '',
     }
   }
 

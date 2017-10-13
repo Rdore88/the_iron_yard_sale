@@ -4,11 +4,18 @@ RSpec.describe OrdersController, type: :controller do
   let(:robby) {User.create!(name: "Robby", password: "robby", password_confirmation: "robby")}
   let(:item) {Item.create!(title: "desk", description: "The best desk ever", price: 20.99, category: "furniture", quantity: 50)}
   let(:params) {{order: {name_of_buyer: "imani", email_of_buyer: "imani@olivegrove.com", phone_of_buyer: "404-555-5555", quantity: 10, item_id: item.id}}}
+  let(:too_many_params) {{order: {name_of_buyer: "imani", email_of_buyer: "imani@olivegrove.com", phone_of_buyer: "404-555-5555", quantity: 60, item_id: item.id}}}
 
   it "creates an order" do
     post :create, params: params
     assert response.ok?
     expect(Order.find_by(name_of_buyer: "imani")).to be_present
+  end
+
+  it "won't create an order if there isn't enough in stock" do
+    post :create, params: too_many_params
+    assert response.ok?
+    expect(JSON.parse(response.body)["message"]).to eq("Not enough in stock to complete order")
   end
 
   it "confirms an order" do

@@ -1,16 +1,22 @@
 # README
 
 ## To use the API
+Reminder: When using postman all requests that require a body should use the raw input, change the type from text to JSON and all keys should have quotes around them. Look at How to log in for more info.
 
 #### How to log in
 Make a post fetch to `/api/users`
 The body will need the user's input sent as an object with the keys "name" and "password". For example:
 
+  Call to database
  `{name: "input1", password: "input2"}`
+
+  Practice with postman (keep in mind this is for all API calls with a body)
+  `{"name": "input1", "password": "input2"}`
+
 
 #### Make a call to create an item
 Make a post fetch to `/api/items`
-The body needs to have a key of item which is an object of all the attributes. Also there must be a current user to send the ID of that user.
+The body needs to have a key of item which is an object of all the attributes. Also there must be a current user to send the ID of that user. Created a file uploader field so the user can upload a file for the item.
 Here is an example body, be mindful of what is a string and what isn't:
 
 `{
@@ -21,13 +27,14 @@ Here is an example body, be mindful of what is a string and what isn't:
     description: "The best desk, everybody says so",
     price: 20.99,
     category: "furniture",
-    quantity: 50
+    quantity: 50,
+    image: uploaded_file_from_user
   }
 }`
 
 #### Make a call to get all items
 Make a get call to `/api/items`
-This will return an array of objects, each object will have all of the attributes like the post call above but it will also have a unique ID, a created_at timestamp and updated_at timestamp
+This will return an array of objects, each object will have all of the attributes like the post call above but it will also have a unique ID, a created_at timestamp and updated_at timestamp.
 
 #### To see a specific item
 Make a get call to `/api/items/:id`
@@ -37,13 +44,13 @@ the :id will be the actual unique ID of the item that you want to see. For examp
 Make a put call to `/api/subtract_quantity/:id`
 the :id will be the actual unique ID of the item that you want to subtract from. In the body you will put the number to subtract from the item's quantity. Also, the user ID will need to be passed in with the body. This will probably only be called when a new order is created for this item and the database needs to reflect those changes. For the below example this will subtract 10 from the items quantity in the database.
 
-`{user_id: 4, order: {quantity: 10}}`
+`{user_id: 4, item: {quantity: 10}}`
 
 #### add quantity of an item
 Make a put call to `/api/add_quantity/:id`
 the :id will be the actual unique ID of the item that you want to add from. In the body you will put the number to add from the item's quantity. Also, the user ID will need to be passed in with the body. This will probably only be called when an order is rejected for this item and the database needs to reflect those changes. For the below example this will add 10 from the items quantity in the database.
 
-`{user_id: 4, order: {quantity: 10}}`
+`{user_id: 4, item: {quantity: 10}}`
 
 #### Delete an item
 Make a delete call to `/api/items/:id`
