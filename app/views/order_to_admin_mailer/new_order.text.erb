@@ -1,0 +1,15 @@
+New order created for <%= @item.title %>
+---------------------------------------------
+
+ <%= @order.name_of_buyer %> has just made an order for <%= @order.quantity %> <%= @item.title %> for a total of <%= @item.price * @order.quantity %>
+
+ Contact info:
+
+  name: <%= @order.name_of_buyer %>
+  email: <%= @order.email_of_buyer %>
+  phone: <%= @order.phone_of_buyer %>
+
+  Please login to The Iron Yard Sale to confirm this order and set a date of pickup
+
+  Best,
+  The Iron Yard Sale dev team

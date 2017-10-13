@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Order Email</title>
+  </head>
+  <body>
+    <h3>New order created for <%= @item.title %></h3>
+    <p>
+      <%= @order.name_of_buyer %> has just made an order for <%= @order.quantity %> <%= @item.title %> for a total of <%= @item.price * @order.quantity %>
+    </p>
+    <p>Contact info: </p>
+    <ul>
+      <li>name: <%= @order.name_of_buyer %></li>
+      <li>email: <%= @order.email_of_buyer %></li>
+      <li>phone: <%= @order.phone_of_buyer %></li>
+    </ul>
+    <p>Please login to The Iron Yard Sale to confirm this order and set a date of pickup</p>
+    <p>Best,</p>
+    <p>The Iron Yard dev team</p>
+  </body>
+</html>
