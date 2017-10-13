@@ -10,19 +10,28 @@ class Admin extends Component {
       this.props.fetchOrders(this.props.user.user_id);
     }
   }
-  confirmOrder = (id) => {
-    this.props.confirmOrder(id, this.props.user.user_id);
+  confirmOrder = (obj) => {
+    this.props.confirmOrder(obj, this.props.user.user_id);
   }
   rejectOrder = (id) => {
     this.props.rejectOrder(id, this.props.user.user_id);
   }
   render() {
+    let errorMessage;
+
+    if (this.props.orderErrorMessages) {
+      errorMessage =
+      <div className="alert alert-danger" role="alert">
+        {this.props.orderErrorMessages}
+      </div>
+    }
     return (
       <div>
+        {errorMessage}
         <OrderList
           userId={this.props.user.user_id}
           orderList={this.props.orderList}
-          confirmOrder={(id) => this.confirmOrder(id)}
+          confirmOrder={(obj) => this.confirmOrder(obj)}
           rejectOrder={(id) => this.rejectOrder(id)}/>
         <ItemForm />
       </div>
@@ -33,14 +42,15 @@ class Admin extends Component {
 const mapStateToProps = (state) => {
   return {
     user: state.user,
-    orderList: state.orders.orderList
+    orderList: state.orders.orderList,
+    orderErrorMessages: state.orders.orderErrorMessages
   }
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchOrders: (id) => dispatch(fetchOrders(id)),
-    confirmOrder: (id, user_id) => dispatch(confirmOrder(id, user_id)),
+    confirmOrder: (obj, user_id) => dispatch(confirmOrder(obj, user_id)),
     rejectOrder: (id, user_id) => dispatch(rejectOrder(id, user_id))
   }
 };

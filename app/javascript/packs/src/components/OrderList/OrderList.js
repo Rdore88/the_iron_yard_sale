@@ -13,7 +13,7 @@ export default class OrderList extends Component{
           <Order
             key={order.order.id}
             orderData={order}
-            confirmOrder={(id) => this.props.confirmOrder(id)}
+            confirmOrder={(obj) => this.props.confirmOrder(obj)}
             rejectOrder={(id) => this.props.rejectOrder(id)}/>
         );
       }
@@ -23,7 +23,7 @@ export default class OrderList extends Component{
       <div className="card m-3 p-3 card w-50 mx-auto" style={{width: "20rem"}}>
         <div className="card-body">
           <h4 className="card-title">Pending Orders</h4>
-          {orderList.length > 1 ? orderList : (<p>There are no pending orders to confirm...</p>)}
+          {orderList.length > 0 ? orderList : (<p>There are no pending orders to confirm...</p>)}
         </div>
       </div>
     )
