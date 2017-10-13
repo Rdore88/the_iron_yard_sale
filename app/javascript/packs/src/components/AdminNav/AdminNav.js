@@ -14,7 +14,7 @@ export default class AdminNav extends Component{
               <NavLink className="nav-link" activeClassName="active" to="/admin">Orders</NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" activeClassName="active" to="/admin/approved">Completed Orders</NavLink>
+              <NavLink className="nav-link" activeClassName="active" to="/admin/confirmed">Confirmed Orders</NavLink>
             </li>
           </ul>
         </div>

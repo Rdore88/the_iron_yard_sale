@@ -8,6 +8,7 @@ export default class OrderList extends Component{
   }
   render(){
     let orderList = this.props.orderList.map((order) => {
+      console.log("ODER", order.order.confirmed);
       if (!order.order.confirmed) {
         return (
           <Order
@@ -19,11 +20,13 @@ export default class OrderList extends Component{
       }
     });
 
+    console.log("ORDERLIST: ", orderList);
+
     return(
       <div className="card m-3 p-3 card w-50 mx-auto" style={{width: "20rem"}}>
         <div className="card-body">
           <h4 className="card-title">Pending Orders</h4>
-          {orderList.length > 1 ? orderList : (<p>There are no pending orders to confirm...</p>)}
+          {orderList.length > 0 ? orderList : (<p>There are no pending orders to confirm...</p>)}
         </div>
       </div>
     )

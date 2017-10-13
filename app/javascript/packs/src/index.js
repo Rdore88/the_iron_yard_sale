@@ -12,7 +12,8 @@ import reducers from './reducers/index.js';
 import BaseLayout from './components/BaseLayout/BaseLayout';
 import Home from './containers/Home/index';
 import Admin from './containers/Admin/index';
-import SingleItem from './containers/SingleItem/SingleItem';
+import CompletedOrders from './containers/CompletedOrders/index';
+import SingleItem from './containers/SingleItem/index';
 import AdminLogin from './components/AdminLogin/AdminLogin';
 
 const store = createStore(
@@ -30,6 +31,7 @@ ReactDOM.render(
           <Route exact path='/login' component={AdminLogin} />
           <Route exact path='/admin' component={Admin} />
           <Route exact path='/item/:id' component={SingleItem} />
+          <Route exact path='/admin/confirmed' component={CompletedOrders} />
         </Switch>
       </BaseLayout>
     </BrowserRouter>
