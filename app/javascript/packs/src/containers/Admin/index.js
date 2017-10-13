@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import ItemForm from '../../components/ItemForm/ItemForm';
 import OrderList from '../../components/OrderList/OrderList';
 import {connect} from 'react-redux';
-import {fetchOrders} from '../../actions/index';
+import {fetchOrders, confirmOrder, rejectOrder} from '../../actions/index';
 
 class Admin extends Component {
   componentDidMount() {
@@ -10,10 +10,20 @@ class Admin extends Component {
       this.props.fetchOrders(this.props.user.user_id);
     }
   }
+  confirmOrder = (id) => {
+    this.props.confirmOrder(id, this.props.user.user_id);
+  }
+  rejectOrder = (id) => {
+    this.props.rejectOrder(id, this.props.user.user_id);
+  }
   render() {
     return (
       <div>
-        <OrderList userId={this.props.user.user_id} orderList={this.props.orderList}/>
+        <OrderList
+          userId={this.props.user.user_id}
+          orderList={this.props.orderList}
+          confirmOrder={(id) => this.confirmOrder(id)}
+          rejectOrder={(id) => this.rejectOrder(id)}/>
         <ItemForm />
       </div>
     );
@@ -29,7 +39,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchOrders: (id) => dispatch(fetchOrders(id))
+    fetchOrders: (id) => dispatch(fetchOrders(id)),
+    confirmOrder: (id, user_id) => dispatch(confirmOrder(id, user_id)),
+    rejectOrder: (id, user_id) => dispatch(rejectOrder(id, user_id))
   }
 };
 
