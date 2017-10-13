@@ -8,19 +8,16 @@ export default class OrderList extends Component{
   }
   render(){
     let orderList = this.props.orderList.map((order) => {
-      console.log("ODER", order.order.confirmed);
       if (!order.order.confirmed) {
         return (
           <Order
             key={order.order.id}
             orderData={order}
-            confirmOrder={(id) => this.props.confirmOrder(id)}
+            confirmOrder={(obj) => this.props.confirmOrder(obj)}
             rejectOrder={(id) => this.props.rejectOrder(id)}/>
         );
       }
     });
-
-    console.log("ORDERLIST: ", orderList);
 
     return(
       <div className="card m-3 p-3 card w-50 mx-auto" style={{width: "20rem"}}>

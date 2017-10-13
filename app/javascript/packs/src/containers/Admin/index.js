@@ -10,8 +10,8 @@ class Admin extends Component {
       this.props.fetchOrders(this.props.user.user_id);
     }
   }
-  confirmOrder = (id) => {
-    this.props.confirmOrder(id, this.props.user.user_id);
+  confirmOrder = (obj) => {
+    this.props.confirmOrder(obj, this.props.user.user_id);
   }
   rejectOrder = (id) => {
     this.props.rejectOrder(id, this.props.user.user_id);
@@ -22,7 +22,7 @@ class Admin extends Component {
         <OrderList
           userId={this.props.user.user_id}
           orderList={this.props.orderList}
-          confirmOrder={(id) => this.confirmOrder(id)}
+          confirmOrder={(obj) => this.confirmOrder(obj)}
           rejectOrder={(id) => this.rejectOrder(id)}/>
         <ItemForm />
       </div>
@@ -40,7 +40,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchOrders: (id) => dispatch(fetchOrders(id)),
-    confirmOrder: (id, user_id) => dispatch(confirmOrder(id, user_id)),
+    confirmOrder: (obj, user_id) => dispatch(confirmOrder(obj, user_id)),
     rejectOrder: (id, user_id) => dispatch(rejectOrder(id, user_id))
   }
 };

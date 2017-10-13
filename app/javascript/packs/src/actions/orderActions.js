@@ -1,4 +1,5 @@
 import {BASE_DEV_URL} from '../constants.js';
+import {subtractQuantity} from './index';
 
 export const SET_STORE_ORDERS = 'SET_STORE_ORDERS';
 
@@ -48,7 +49,7 @@ const createOrder = (obj) => {
   }
 }
 
-const confirmOrder = (order_id, user_id) => {
+const confirmOrder = (action, user_id) => {
   return (dispatch, getState) => {
     let options = {
       method: "GET",
@@ -57,12 +58,37 @@ const confirmOrder = (order_id, user_id) => {
       }
     }
 
-    fetch(BASE_DEV_URL + "/api/confirm_order/" + order_id + "?user_id=" + user_id, options)
+    fetch(BASE_DEV_URL + "/api/confirm_order/" + action.order_id + "?user_id=" + user_id, options)
       .then((res) => {
         return res.json();
       })
       .then((json) => {
-        return dispatch(fetchOrders(user_id));
+        let quantityObj = {
+          user_id: user_id,
+          item: {
+            quantity: action.amountChanged
+          }
+        }
+
+        let options = {
+          method: "PUT",
+          body: JSON.stringify(quantityObj),
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        }
+
+        fetch(BASE_DEV_URL + "/api/subtract_quantity/" + action.item_id, options)
+          .then(res => {
+            return res.json();
+          })
+          .then(json => {
+            return dispatch(fetchOrders(user_id));
+          })
+          .catch(err => {
+            return dispatch(fetchOrders(user_id));
+          })
+
       })
   }
 }

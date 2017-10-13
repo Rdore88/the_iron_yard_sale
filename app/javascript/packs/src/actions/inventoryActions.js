@@ -82,4 +82,14 @@ const deleteInventoryItem = (action) => {
   }
 }
 
-export {setStoreInventory, createInventoryItem, fetchInventory, deleteInventoryItem};
+const subtractQuantity = (action) => {
+  
+}
+
+export {
+  setStoreInventory,
+  createInventoryItem,
+  fetchInventory,
+  deleteInventoryItem,
+  subtractQuantity
+};
