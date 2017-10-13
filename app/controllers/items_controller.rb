@@ -27,6 +27,7 @@ class ItemsController < ApplicationController
   end
 
   def destroy
+    @item.orders.destroy_all
     if @item.destroy
       render json: {status: "success", message: "Removed item from inventory"}
     else

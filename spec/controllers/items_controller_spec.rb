@@ -25,6 +25,7 @@ RSpec.describe ItemsController, type: :controller do
     assert response.ok?
     expect(Item.all.length).to be(1)
     item = Item.find_by(title: "desk")
+    Order.create!(name_of_buyer: "imani", email_of_buyer: "imani@olivegrove.com", phone_of_buyer: "404-555-5555", quantity: 10, item_id: item.id)
     delete :destroy, params: {id: item.id}
     assert response.ok?
     expect(Item.all.length).to be(0)
