@@ -44,13 +44,13 @@ the :id will be the actual unique ID of the item that you want to see. For examp
 Make a put call to `/api/subtract_quantity/:id`
 the :id will be the actual unique ID of the item that you want to subtract from. In the body you will put the number to subtract from the item's quantity. Also, the user ID will need to be passed in with the body. This will probably only be called when a new order is created for this item and the database needs to reflect those changes. For the below example this will subtract 10 from the items quantity in the database.
 
-`{user_id: 4, order: {quantity: 10}}`
+`{user_id: 4, item: {quantity: 10}}`
 
 #### add quantity of an item
 Make a put call to `/api/add_quantity/:id`
 the :id will be the actual unique ID of the item that you want to add from. In the body you will put the number to add from the item's quantity. Also, the user ID will need to be passed in with the body. This will probably only be called when an order is rejected for this item and the database needs to reflect those changes. For the below example this will add 10 from the items quantity in the database.
 
-`{user_id: 4, order: {quantity: 10}}`
+`{user_id: 4, item: {quantity: 10}}`
 
 #### Delete an item
 Make a delete call to `/api/items/:id`
