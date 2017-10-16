@@ -47,12 +47,16 @@ class SingleItem extends Component{
     });
   }
   render(){
-    let errorMessage;
+    let message;
 
     if (this.props.orderErrorMessages) {
-      errorMessage =
+      alertMessage =
       <div className="alert alert-danger" role="alert">
         {this.props.orderErrorMessages}
+      </div>
+    } else if (this.props.successOrderMessages) {
+      alertMessage = <div className="alert alert-success" role="alert">
+        {this.props.successOrderMessages}
       </div>
     }
 
@@ -67,7 +71,7 @@ class SingleItem extends Component{
             <div>{item.quantity}</div>
 
             <div>
-              {errorMessage}
+              {alertMessage}
               <div className="form-group">
                 <label htmlFor="orderName">Name</label>
                 <input type="text" className="form-control" id="orderName" placeholder="Enter Name" value={ this.state.name_of_buyer } onChange={ this.handleName }/>
@@ -104,7 +108,8 @@ const mapStateToProps = (state) => {
   return {
     user: state.user,
     inventory: state.inventory.inventory,
-    orderErrorMessages: state.orders.orderErrorMessages
+    orderErrorMessages: state.orders.orderErrorMessages,
+    successOrderMessages: state.orders.successOrderMessages
   };
 };
 
