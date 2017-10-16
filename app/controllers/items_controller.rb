@@ -20,13 +20,14 @@ class ItemsController < ApplicationController
     @item = Item.new(item_params)
     @item.image = item_params[:image]
     if @item.save
-      render json: {status: :created, message: "Created item"}
+      render json: {status: "success", message: "Created item"}
     else
       render json: {status: "failed", message: "Not Created!"}
     end
   end
 
   def destroy
+    @item.orders.destroy_all
     if @item.destroy
       render json: {status: "success", message: "Removed item from inventory"}
     else

@@ -15,7 +15,7 @@ class OrdersController < ApplicationController
       render json: {status: "failed", message: "Not enough in stock to complete order"}
     elsif @order.save
       OrderToAdminMailer.new_order(@order).deliver_later
-      render json: {status: :created, message: "Created order"}
+      render json: {status: "success", message: "Created order"}
     else
       render json: {status: "failed", message: "Order Not Created!"}
     end

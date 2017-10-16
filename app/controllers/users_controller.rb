@@ -6,7 +6,7 @@ class UsersController < ApplicationController
     if @user && @user.authenticate(params[:password])
       render json: {status: "success", user_id: @user.id}
     else
-      render json: {message: "Name or password not correct", status: :bad_request}
+      render json: {message: "Name or password not correct", status: "failed"}
     end
   end
 end
