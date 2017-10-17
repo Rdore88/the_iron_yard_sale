@@ -39,7 +39,7 @@ const fetchOrders = (id) => {
         return res.json();
       })
       .then(json => {
-        if (json.status !== "success") {
+        if (json.status !== "success" && json.status) {
           return dispatch(setOrderErrorMessages(json.message))
         }
         return dispatch(setStoreOrders(json));

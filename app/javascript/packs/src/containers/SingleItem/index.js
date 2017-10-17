@@ -47,7 +47,7 @@ class SingleItem extends Component{
     });
   }
   render(){
-    let message;
+    let alertMessage;
 
     if (this.props.orderErrorMessages) {
       alertMessage =
@@ -55,7 +55,8 @@ class SingleItem extends Component{
         {this.props.orderErrorMessages}
       </div>
     } else if (this.props.successOrderMessages) {
-      alertMessage = <div className="alert alert-success" role="alert">
+      alertMessage =
+      <div className="alert alert-success" role="alert">
         {this.props.successOrderMessages}
       </div>
     }
