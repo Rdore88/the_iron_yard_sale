@@ -23,6 +23,15 @@ RSpec.describe OrdersController, type: :controller do
     order = Order.find_by(name_of_buyer: "imani")
     get :confirm_order, params: {id: order.id, user_id: robby.id}
     assert response.ok?
+    expect(JSON.parse(response.body)["message"]).to eq("Please set a date before you confirm an order")
+  end
+
+  it "confirms an order" do
+    post :create, params: params
+    order = Order.find_by(name_of_buyer: "imani")
+    order.update(date: "thursday")
+    get :confirm_order, params: {id: order.id, user_id: robby.id}
+    assert response.ok?
     expect(Order.find_by(name_of_buyer: "imani").confirmed).to be(true)
   end
 
