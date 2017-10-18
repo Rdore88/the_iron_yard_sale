@@ -29,3 +29,15 @@ li {
 .brand-img {
   width: 5em;
 }
+.side-nav {
+  color: #343A40 !important;
+  border-radius: 0 !important;
+}
+.active {
+  background-color: #343A40 !important;
+  color: #F8F9FA !important;
+  border-radius: 0 !important;
+}
+.active:hover {
+  color: #F8F9FA !important;
+}

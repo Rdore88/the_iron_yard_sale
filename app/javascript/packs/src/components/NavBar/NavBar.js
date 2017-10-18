@@ -7,7 +7,7 @@ export default class NavBar extends Component{
       <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div className="navbar-nav mr-auto">
             <NavLink className="nav-item nav-link" to="/">Store</NavLink>
-            <NavLink className="nav-item nav-link" to="/login">Admin</NavLink>
+            <NavLink className="nav-item nav-link" style={{color: '#F8F9FA'}} to="/login">Admin</NavLink>
         </div>
       </div>
     )

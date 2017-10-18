@@ -25,6 +25,10 @@ class App extends Component{
     this.props.fetchInventory();
   }
 
+  isActive = (value) => {
+    return 'nav-link side-nav ' + (value === this.state.filter ? 'active': '')
+  }
+
   render(){
     let intro =
     <div>
@@ -40,37 +44,39 @@ class App extends Component{
 
     return(
       <div className="d-flex flex-row">
-        <ul className="nav flex-column">
+        <div className="d-flex flex-column">
+          <h3 className="card-title m-2">Categories</h3>
+          <ul className="nav flex-column nav-pills bg-light">
           <li className="nav-item">
-            <Link className="nav-link" to="#" onClick={() => this.updateFilter("All")}>All Items</Link>
+            <Link className={this.isActive('All')} to="#" onClick={() => this.updateFilter("All")}>All Items</Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link" to="#" onClick={() => this.updateFilter("Furniture")}>Furniture</Link>
+            <Link className={this.isActive('Furniture')} to="#" onClick={() => this.updateFilter("Furniture")}>Furniture</Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link" to="#" onClick={() => this.updateFilter("Kitchen")}>Kitchen</Link>
+            <Link className={this.isActive('Kitchen')} to="#" onClick={() => this.updateFilter("Kitchen")}>Kitchen</Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link" to="#" onClick={() => this.updateFilter("Lighting")}>Lighting</Link>
+            <Link className={this.isActive('Lighting')} to="#" onClick={() => this.updateFilter("Lighting")}>Lighting</Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link" to="#" onClick={() => this.updateFilter("Art & Decor")}>Art & Decor</Link>
+            <Link className={this.isActive('Art & Decor')} to="#" onClick={() => this.updateFilter("Art & Decor")}>Art & Decor</Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link" to="#" onClick={() => this.updateFilter("Media/Electronics")}>Media/Electronics</Link>
+            <Link className={this.isActive('Media/Electronics')} to="#" onClick={() => this.updateFilter("Media/Electronics")}>Media/Electronics</Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link" to="#" onClick={() => this.updateFilter("Games")}>Games</Link>
+            <Link className={this.isActive('Games')} to="#" onClick={() => this.updateFilter("Games")}>Games</Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link" to="#" onClick={() => this.updateFilter("Office Supplies")}>Office Supplies</Link>
+            <Link className={this.isActive('Office Supplies')} to="#" onClick={() => this.updateFilter("Office Supplies")}>Office Supplies</Link>
           </li>
         </ul>
-      <div className="jumbotron ml-3">
-        {intro}
-
-        <AllItems user={this.props.user} inventoryItems={this.props.inventory} filter={this.state.filter}/>
-      </div>
+        </div>
+        <div className="jumbotron ml-3">
+          {intro}
+          <AllItems user={this.props.user} inventoryItems={this.props.inventory} filter={this.state.filter}/>
+        </div>
     </div>
     )
   }
