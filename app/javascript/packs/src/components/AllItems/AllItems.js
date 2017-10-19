@@ -87,7 +87,7 @@ class AllItems extends Component{
                   toggle={() => this.toggle(index)}>
                   {item.title}
                 </Tooltip>
-                <h6 className="card-title text-primary">${item.price}</h6>
+                <h4 className="card-title text-primary">${item.price}</h4>
               </div>
               <div className="item-card card bg-dark rounded-top" style={{width: "20rem", height: "20rem"}}>
                 <img className="card-img-top" src="..." alt=""></img>

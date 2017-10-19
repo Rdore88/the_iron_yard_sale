@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {createInventoryItem} from '../../actions/index';
 import {connect} from 'react-redux';
+import FileBase64 from 'react-file-base64';
 
 class ItemForm extends Component {
   constructor() {
@@ -11,7 +12,8 @@ class ItemForm extends Component {
       description: '',
       price: '',
       quantity: '',
-      category: '',
+      category: 'Art & Decor',
+      image: null
     }
   }
 
@@ -31,6 +33,10 @@ class ItemForm extends Component {
     this.setState({category: e.target.value});
   }
 
+  handleFile = (file) => {
+    this.setState({image: file.base64})
+  }
+
   handleSubmit = () => {
     let itemObj = {
       user_id: this.props.user.user_id ? this.props.user.user_id : undefined,
@@ -38,6 +44,14 @@ class ItemForm extends Component {
     }
 
     this.props.createInventoryItem(itemObj);
+    this.setState({
+      title: '',
+      description: '',
+      price: '',
+      quantity: '',
+      category: 'Art & Decor',
+      image: null
+    })
   }
 
   render() {
@@ -82,6 +96,9 @@ class ItemForm extends Component {
             <option>Office Supplies</option>
           </select>
         </div>
+        <FileBase64
+          multiple={false}
+          onDone={ this.handleFile}/>
         <button type="button" onClick={this.handleSubmit} className="btn btn-secondary mx-auto">Submit</button>
       </div>
     );
