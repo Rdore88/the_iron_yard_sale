@@ -40,7 +40,7 @@ class AllItems extends Component{
             <h4 className="card-title text-primary">${item.price}</h4>
           </div>
           <div className="item-card card bg-dark rounded-top" style={{width: "20rem", height: "20rem"}}>
-            <img className="card-img-top" src="..." alt=""></img>
+            <img className="card-img-top" src={item.image.url} width="100%" height="100%" alt=""></img>
             <div className="card-img-overlay">
               <h6 className="card-subtitle mb-2 text-muted">{item.category}</h6>
               <p className="card-text text-white">{item.description}</p>
@@ -90,7 +90,7 @@ class AllItems extends Component{
                 <h4 className="card-title text-primary">${item.price}</h4>
               </div>
               <div className="item-card card bg-dark rounded-top" style={{width: "20rem", height: "20rem"}}>
-                <img className="card-img-top" src="..." alt=""></img>
+                <img className="card-img-top" src={item.image.url} width="100%" height="100%" alt="" style={{border: 'none'}}></img>
                 <div className="card-img-overlay">
                   <h6 className="card-subtitle mb-2 text-muted">{item.category}</h6>
                   <p className="card-text text-white">{item.description}</p>

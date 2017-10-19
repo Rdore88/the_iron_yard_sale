@@ -68,7 +68,7 @@ class SingleItem extends Component{
         return (
           <div className="row w-100" key={item.id}>
             <div className="card m-2 p-3 w-50 col h-50" style={{minWidth: '350px'}}>
-              <img className="bg-dark rounded text-white p-3 card-img-top" src="..." alt="Card image cap"></img>
+              <img className="bg-dark rounded text-white p-3 card-img-top" src="https://ak.picdn.net/assets/cms/89a342bc2cb8831391f7feb79d0a8ed22265f892-stock-photo-lonely-boat-on-a-beach-with-aerial-view-280774472.jpg" width="100%" height="100%" alt="Card image cap"></img>
               <div className="card-body">
                 <h4 className="card-title">{item.title}</h4>
                 <h6 className="card-subtitle text-muted mb-2 mt-4">About:</h6>
