@@ -3,6 +3,7 @@ import {subtractQuantity} from './index';
 
 export const SET_STORE_ORDERS = 'SET_STORE_ORDERS';
 export const SET_ORDER_ERROR_MESSAGES = 'SET_ORDER_ERROR_MESSAGES';
+export const SET_SUCCESSFUL_ORDER_MESSAGES = 'SET_SUCCESSFUL_ORDER_MESSAGES';
 
 const setStoreOrders = (payload) => {
   return {
@@ -14,6 +15,13 @@ const setStoreOrders = (payload) => {
 const setOrderErrorMessages = (payload) => {
   return {
     type: SET_ORDER_ERROR_MESSAGES,
+    payload: payload
+  }
+}
+
+const setSuccessfulOrderMessages = (payload) => {
+  return {
+    type: SET_SUCCESSFUL_ORDER_MESSAGES,
     payload: payload
   }
 }
@@ -31,10 +39,13 @@ const fetchOrders = (id) => {
         return res.json();
       })
       .then(json => {
-        if (json.status !== "success") {
+        if (json.status !== "success" && json.status) {
           return dispatch(setOrderErrorMessages(json.message))
         }
         return dispatch(setStoreOrders(json));
+      })
+      .catch(err => {
+        return dispatch(setOrderErrorMessages("There was an error processing your request. Please try again later."))
       });
   }
 }
@@ -58,6 +69,10 @@ const createOrder = (obj) => {
         if (json.status !== "success") {
           return dispatch(setOrderErrorMessages(json.message))
         }
+        return dispatch(setSuccessfulOrderMessages(json.message))
+      })
+      .catch(err => {
+        return dispatch(setOrderErrorMessages("There was an error processing your request. Please try again later."))
       });
   }
 }
@@ -108,6 +123,9 @@ const confirmOrder = (action, user_id) => {
             return dispatch(fetchOrders(user_id));
           })
 
+      })
+      .catch(err => {
+        return dispatch(setOrderErrorMessages("There was an error processing your request. Please try again later."))
       })
   }
 }
