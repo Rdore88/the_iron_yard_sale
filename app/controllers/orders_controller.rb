@@ -30,9 +30,7 @@ class OrdersController < ApplicationController
   end
 
   def confirm_order
-    if !@order.date
-      render json: {status: "failed", message: "Please set a date before you confirm an order"}
-    elsif @order.update(confirmed: true)
+    if @order.update(confirmed: true)
       ConfirmOrderToUserMailer.confirm_order(@order).deliver_later
       render json: {status: "success", message: "Order confirmed"}
     else

@@ -82,7 +82,7 @@ the :id will be the actual unique ID of the item that you want to see. For examp
 
 #### To confirm an order
 Make a get call to `/api/confirm_order/:id`
-The :id will be the actual ID of the order you want to complete. The order must have a date set before you can confirm an order. 
+The :id will be the actual ID of the order you want to complete.
 
 #### Update an order/set a date
 Make a put call to `/api/orders/:id`
