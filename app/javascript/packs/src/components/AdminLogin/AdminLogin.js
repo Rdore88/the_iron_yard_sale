@@ -45,7 +45,7 @@ class AdminLogin extends Component{
     }
 
     return(
-      <div className="m-3 p-3 card w-50 mx-auto">
+      <div className="m-3 p-3 card w-75 mx-auto">
         <h1>Login</h1>
         {errorMessage}
         <div>

@@ -65,7 +65,7 @@ class ItemForm extends Component {
     }
 
     return (
-      <div className="m-3 p-5 card w-50 mx-auto">
+      <div className="m-3 p-5 card w-75 mx-auto">
         <h4 className="card-title">Create New Item</h4>
         {errorMessage}
         <div className="form-group">
