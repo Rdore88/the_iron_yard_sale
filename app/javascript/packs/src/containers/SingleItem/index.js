@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {fetchInventory, createOrder} from '../../actions/index';
+import {NavLink} from 'react-router-dom';
 
 class SingleItem extends Component{
   constructor() {
@@ -47,12 +48,17 @@ class SingleItem extends Component{
     });
   }
   render(){
-    let errorMessage;
+    let alertMessage = '';
 
     if (this.props.orderErrorMessages) {
-      errorMessage =
+      alertMessage =
       <div className="alert alert-danger" role="alert">
         {this.props.orderErrorMessages}
+      </div>
+    } else if (this.props.successOrderMessages) {
+      alertMessage =
+      <div className="alert alert-success" role="alert">
+        {this.props.successOrderMessages}
       </div>
     }
 
@@ -60,14 +66,23 @@ class SingleItem extends Component{
     let item = this.props.inventory.map((item) => {
       if (item.id === Number(id)) {
         return (
-          <div  className="m-3 p-3 card w-50 mx-auto" key={item.id}>
-            <div>{item.title}</div>
-            <div>{item.description}</div>
-            <div>{item.price}</div>
-            <div>{item.quantity}</div>
+          <div className="row w-100" key={item.id}>
+            <div className="card m-2 p-3 w-50 col h-50" style={{minWidth: '350px'}}>
+              <img className="bg-dark rounded text-white p-3 card-img-top" src="..." alt="Card image cap"></img>
+              <div className="card-body">
+                <h4 className="card-title">{item.title}</h4>
+                <h6 className="card-subtitle text-muted mb-2 mt-4">About:</h6>
+                <p className="card-text">{item.description}</p>
+                <h6 className="card-subtitle text-muted mb-2 mt-2">Price:</h6>
+                <p className="card-text">${item.price}</p>
+                <h6 className="card-subtitle text-muted mb-2 mt-2">Quantity:</h6>
+                <p className="card-text">{item.quantity}</p>
+              </div>
+            </div>
 
-            <div>
-              {errorMessage}
+            <div className="col m-2 p-3 card w-50 h-50" style={{minWidth: '350px'}}>
+              {alertMessage}
+              <h3 className="card-title">Order Form</h3>
               <div className="form-group">
                 <label htmlFor="orderName">Name</label>
                 <input type="text" className="form-control" id="orderName" placeholder="Enter Name" value={ this.state.name_of_buyer } onChange={ this.handleName }/>
@@ -87,13 +102,13 @@ class SingleItem extends Component{
               <button type="button" onClick={this.handleSubmit} className="btn btn-secondary mx-auto">Order</button>
             </div>
           </div>
-
         )
       }
     })
 
     return(
-      <div className="card m-3 p-3 card w-75 mx-auto" style={{width: "20rem"}}>
+      <div className="container w-75 mx-auto">
+        <NavLink className="nav-item nav-link w-50 mt-2 mx-auto text-center" to="/">Back To Store</NavLink>
         {item}
       </div>
     )
@@ -104,7 +119,8 @@ const mapStateToProps = (state) => {
   return {
     user: state.user,
     inventory: state.inventory.inventory,
-    orderErrorMessages: state.orders.orderErrorMessages
+    orderErrorMessages: state.orders.orderErrorMessages,
+    successOrderMessages: state.orders.successOrderMessages
   };
 };
 

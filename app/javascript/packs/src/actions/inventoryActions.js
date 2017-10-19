@@ -50,7 +50,7 @@ const createInventoryItem = (action) => {
         return res.json();
       })
       .then(json => {
-        if (json.message) {
+        if (json.status !== 'success') {
           return dispatch(setItemFormError(json.message))
         }
         return dispatch(fetchInventory());
