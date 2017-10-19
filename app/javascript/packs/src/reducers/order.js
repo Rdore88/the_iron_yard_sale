@@ -23,12 +23,18 @@ const orders = function(state = initialState, action) {
       return update(state, {
         orderErrorMessages: {
           $set: action.payload
+        },
+        successOrderMessages: {
+          $set: ''
         }
       });
     case SET_SUCCESSFUL_ORDER_MESSAGES:
       return update(state, {
         successOrderMessages: {
           $set: action.payload
+        },
+        orderErrorMessages: {
+          $set: ''
         }
       });
     default:

@@ -43,6 +43,9 @@ const fetchOrders = (id) => {
           return dispatch(setOrderErrorMessages(json.message))
         }
         return dispatch(setStoreOrders(json));
+      })
+      .catch(err => {
+        return dispatch(setOrderErrorMessages("There was an error processing your request. Please try again later."))
       });
   }
 }
@@ -67,6 +70,9 @@ const createOrder = (obj) => {
           return dispatch(setOrderErrorMessages(json.message))
         }
         return dispatch(setSuccessfulOrderMessages(json.message))
+      })
+      .catch(err => {
+        return dispatch(setOrderErrorMessages("There was an error processing your request. Please try again later."))
       });
   }
 }
@@ -117,6 +123,9 @@ const confirmOrder = (action, user_id) => {
             return dispatch(fetchOrders(user_id));
           })
 
+      })
+      .catch(err => {
+        return dispatch(setOrderErrorMessages("There was an error processing your request. Please try again later."))
       })
   }
 }

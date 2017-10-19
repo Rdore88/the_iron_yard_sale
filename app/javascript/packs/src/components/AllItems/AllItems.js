@@ -27,7 +27,7 @@ class AllItems extends Component{
 
     let listedItems = filteredItems.map((item, index) => {
       return (
-        <li key={index} className="ml-4">
+        <li key={index} className="ml-4 mt-4">
           <div className="d-flex justify-content-center">
             <h5 id={"tooltip-" + index} className="card-title mr-5">{item.title.length > 20 ? item.title.substring(0, 20) + '...' : item.title}</h5>
             <Tooltip
@@ -77,7 +77,7 @@ class AllItems extends Component{
       case "All":
         items = this.props.inventoryItems.inventory.map((item, index) => {
           return (
-            <li key={index} className="ml-4">
+            <li key={index} className="ml-4 mt-4">
               <div className="d-flex justify-content-center">
                 <h5 id={"tooltip-" + index} className="card-title mr-5">{item.title.length > 20 ? item.title.substring(0, 20) + '...' : item.title}</h5>
                 <Tooltip
