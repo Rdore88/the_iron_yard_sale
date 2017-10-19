@@ -6,7 +6,6 @@ import { NavLink } from 'react-router-dom';
 
 class Header extends Component{
   render(){
-    // p-3 d-flex justify-content-between align-items-center
     return(
       <nav className="navbar navbar-dark bg-dark">
         <NavLink className="navbar-brand" to="/">
