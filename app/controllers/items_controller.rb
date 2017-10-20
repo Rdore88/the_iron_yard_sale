@@ -19,6 +19,7 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     @item.image = item_params[:image]
+    binding.pry
     if @item.save
       render json: {status: "success", message: "Created item"}
     else
